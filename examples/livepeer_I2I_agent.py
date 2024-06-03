@@ -21,7 +21,7 @@ from hive_agent import HiveAgent
 configuration = livepeer_ai.Configuration(host="https://dream-gateway.livepeer.cloud")
 
 
-class LivepeerT2IAgent:
+class LivepeerI2IAgent:
     def __init__(self, configuration):
         self.configuration = configuration
         self.host = configuration.host
@@ -61,24 +61,24 @@ if __name__ == "__main__":
     with open(image_path, "rb") as f:
         image = f.read()
 
-    LivepeerT2IAgent = LivepeerT2IAgent(configuration)
+    LivepeerI2IAgent = LivepeerI2IAgent(configuration)
 
     livepeer_T2I_agent = HiveAgent(
-        name="LivepeerT2IAgent",
-        functions=[LivepeerT2IAgent.request_image_to_image],
+        name="LivepeerI2IAgent",
+        functions=[LivepeerI2IAgent.request_image_to_image],
         instruction="Convert text to image using the Livepeer AI service",
         port=8002,
     )
 
     # Check if the agent is setup correctly
-    test_response = LivepeerT2IAgent.request_image_to_image(
+    test_response = LivepeerI2IAgent.request_image_to_image(
         model_id="ByteDance/SDXL-Lightning",
         prompt="A Cat on the Beach!",
         image=image,
     )
 
     # Download the first image from the response.
-    image = LivepeerT2IAgent.download_image(test_response.images[0])
+    image = LivepeerI2IAgent.download_image(test_response.images[0])
 
     # TODO: Implement HiveAgent endpoints and logic.
     livepeer_T2I_agent.run()
