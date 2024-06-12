@@ -12,3 +12,6 @@ build
 .vscode
 
 .DS_Store
+
+I2I_output.png
+I2V_output.mp4
